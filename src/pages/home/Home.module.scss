@@ -1,0 +1,243 @@
+.wrapper {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.ads {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.ads-top {
+    width: 100%;
+    height: 312px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ads-menu {
+    height: 100%;
+    padding: 5px;
+    border: 1px solid rgba(156, 163, 175, 0.25);
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #7a7a7b;
+
+    a {
+        padding: 3px 0.5rem;
+
+        &:hover {
+            background-color: var(--hover);
+        }
+    }
+}
+
+.ads-slider {
+    width: 631px;
+    z-index: 1;
+}
+
+.ads-show-2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.img-ads {
+    width: 280px;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.img-slider {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.ads-bottom {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    width: 100%;
+}
+
+.img-ads {
+    width: 280px;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.featured-products {
+    width: 100%;
+}
+
+.featured-products__header {
+    padding-left: 6px;
+    width: 100%;
+    .subtitle {
+        font-size: 1.4rem;
+        opacity: 0.6;
+    }
+}
+
+.header-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2.4rem;
+    font-weight: bold;
+
+    button {
+        font-weight: 700;
+        font-size: 1.4rem !important;
+    }
+}
+
+.featured-products__list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.featured-products__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-bottom: 1px solid rgba(156, 163, 175, 0.25);
+    padding: 10px;
+    margin-bottom: 40px;
+}
+
+.see-more {
+    color: var(--primary);
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.selling {
+    padding-top: 11rem;
+    padding-left: -10rem;
+    background-color: #000d21;
+    background-image: url(https://divineshop.vn/static/0de2668c294edf9d5fd8a8647b2c65b6.png);
+    background-repeat: no-repeat;
+    color: var(--white);
+}
+
+.selling-products {
+    width: 100%;
+}
+
+.selling-products__header {
+    padding-left: 6px;
+    width: 100%;
+    .subtitle {
+        font-size: 1.4rem;
+        opacity: 0.6;
+    }
+}
+
+.selling-products__list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.selling-products__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-bottom: 1px solid rgba(156, 163, 175, 0.25);
+    padding: 10px;
+    margin-bottom: 40px;
+}
+
+.selling-see-more {
+    color: var(--white);
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.list-key {
+    display: flex;
+    margin-bottom: 30px;
+
+    button:nth-child(1){
+        color: var(--white);
+        background-color: var(--aqua1);
+    }
+    button:nth-child(2){
+        color: var(--white);
+        background-color: var(--aqua0);
+    }
+    button:nth-child(3){
+        color: var(--white);
+        background-color: var(--orange);
+    }
+    button:nth-child(4){
+        color: var(--white);
+        background-color: var(--gray2);
+    }
+    button:nth-child(5){
+        color: var(--white);
+        background-color: var(--gray1);
+    }
+    button:nth-child(6){
+        color: var(--white);
+        background-color: var(--gray0);
+    }
+}
+
+.key-title{
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.list-price {
+    display: flex;
+    margin-bottom: 30px;
+
+    button{
+        border: 1px solid rgba(156,163,175,.25);
+    }
+}
+
+
+.please-register{
+    background-color: #000d21;
+    height: 224px;
+}
+
+.please-register__body{
+    display: flex;
+    flex-direction: row!important;
+    color: var(--white);
+    padding: 20px 20px 20px 50px;
+}
+
+.img-please{
+    height: 100%;
+    margin-right: 50px;
+}
+
+.please-content{
+    p{
+        margin: 10px 0;
+    }
+
+    button{
+        margin-right: 20px;
+    }
+
+    span{
+
+        a{
+            color: #ffffff;
+            margin-left: 10px;
+        }
+    }
+}
