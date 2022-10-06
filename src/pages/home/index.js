@@ -12,7 +12,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import * as data from '../../data';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
 
 import {
     faGamepad,
@@ -86,7 +86,7 @@ function Home() {
     //     }
     //     fetchPostList()
     // }, []);
-
+    SwiperCore.use([Autoplay])
     return (
         <div className={cx('wrapper')}>
             <div className={cx('')}>
@@ -107,6 +107,7 @@ function Home() {
                                 slidesPerView={1}
                                 onSlideChange={() => console.log('slide change')}
                                 onSwiper={(swiper) => console.log(swiper)}
+                                autoplay={{ delay: 3000 }}
                             >
                                 <SwiperSlide>
                                     <Image
@@ -215,6 +216,7 @@ function Home() {
                                 priceSale={featuredProduct.priceSale}
                                 salePer={featuredProduct.salePer}
                                 key={featuredProduct.index}
+                                to={featuredProduct.to}
                             />
                         ))}
                     </div>
@@ -249,14 +251,15 @@ function Home() {
                             </span>
                         </div>
                         <div className={cx('selling-products__list')}>
-                            {data.featuredProducts.map((featuredProduct, index) => (
+                            {data.sellingProducts.map((sellingProduct, index) => (
                                 <ProductItem
-                                    srcImg={featuredProduct.image}
-                                    title={featuredProduct.title}
-                                    price={featuredProduct.price}
-                                    priceSale={featuredProduct.priceSale}
-                                    salePer={featuredProduct.salePer}
-                                    key={featuredProduct.index}
+                                    srcImg={sellingProduct.image}
+                                    title={sellingProduct.title}
+                                    price={sellingProduct.price}
+                                    priceSale={sellingProduct.priceSale}
+                                    salePer={sellingProduct.salePer}
+                                    key={sellingProduct.index}
+                                    to={sellingProduct.to}
                                 />
                             ))}
                         </div>

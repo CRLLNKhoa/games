@@ -124,7 +124,7 @@
     background-color: #000d21;
     background-image: url(https://divineshop.vn/static/0de2668c294edf9d5fd8a8647b2c65b6.png);
     background-repeat: no-repeat;
-    color: var(--white);
+ 
 }
 
 .selling-products {
@@ -143,6 +143,10 @@
 .selling-products__list {
     display: flex;
     flex-wrap: wrap;
+    
+    a{
+        color: var(--white)!important;
+    }
 }
 
 .selling-products__bottom {

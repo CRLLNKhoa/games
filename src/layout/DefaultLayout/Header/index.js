@@ -9,6 +9,7 @@ import MenuItem from '../../components/MenuItem';
 import LinkHasImg from '../../components/LinkHasImg';
 import { Wrapper as PropperWapper } from '../../../layout/components/Popper';
 import { useState, useEffect } from 'react';
+import ToastMessage from '../../components/ToastMessage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faBook,
@@ -32,6 +33,7 @@ import {
     faMessage,
     faEllipsis,
     faMinus,
+    faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
@@ -112,11 +114,33 @@ function Header() {
     const [count, setCount] = useState(0);
     const [currentLogin, setCurrentLogin] = useState(false);
     const [showChat, setShowChat] = useState(false);
+    const [formLogin, setFormLogin] = useState(1);
+    const [modalLogin, setModalLogin] = useState(false);
+    const [toast, setToast] = useState(false)
+    const [toastOut, setToastOut] = useState(false)
+
+    const hanldeLogin = () => {
+        setModalLogin(true);
+        setFormLogin(1)
+    };
+
+    const hanldeBtnLogin = () => {
+        setModalLogin(false);
+        setCurrentLogin(true)
+        setToast(true)
+        setTimeout(() => {
+            setToast(false)
+        }, 3000);
+    };
+
+    const hanldeLoginExit = () => {
+        setModalLogin(false);
+    };
 
     const hanldeChat = () => {
-        if(showChat){
-            setShowChat(false)
-        }else setShowChat(true)
+        if (showChat) {
+            setShowChat(false);
+        } else setShowChat(true);
     };
 
     const hanldeChatExit = () => {
@@ -125,6 +149,10 @@ function Header() {
 
     const handleLogout = () => {
         setCurrentLogin(false);
+        setToastOut(true)
+        setTimeout(() => {
+            setToastOut(false)
+        }, 3000);
     };
 
     useEffect(() => {
@@ -136,6 +164,8 @@ function Header() {
 
     return (
         <div className={cx('wrapper')}>
+            {toast && <ToastMessage content='Đăng nhập thành công!' success/>}
+            {toastOut && <ToastMessage content='Đăng Xuất thành công!' wraning/>}
             <div className={cx('header-top')}>
                 <div className={cx('center')}>
                     <div className={cx('header-top__left')}>
@@ -222,7 +252,7 @@ function Header() {
                                     src="https://toppng.com/uploads/preview/vu-thi-ha-user-pro-icon-115534024853ae3gswzwd.png"
                                     title={user.name}
                                 />
-                                <span className={cx('user-name')} onClick={() => setCurrentLogin(true)}>
+                                <span className={cx('user-name')} onClick={hanldeLogin}>
                                     Đăng nhập / Đăng ký
                                 </span>
                             </div>
@@ -285,7 +315,12 @@ function Header() {
                             <div className="box" tabIndex="-1" {...attrs}>
                                 <PropperWapper>
                                     {CATEGORY_MENU.map((item, index) => (
-                                        <MenuItem className={cx('item-category')} to='/search' key={index} iconLeft={item.icon}>
+                                        <MenuItem
+                                            className={cx('item-category')}
+                                            to="/search"
+                                            key={index}
+                                            iconLeft={item.icon}
+                                        >
                                             {item.label}
                                         </MenuItem>
                                     ))}
@@ -351,8 +386,84 @@ function Header() {
                             <FontAwesomeIcon icon={faMessage} /> Do messager cung cấp
                         </p>
                     </div>
-                ):<></>}
+                ) : (
+                    <></>
+                )}
             </div>
+            {modalLogin && (
+                <div className={cx('form-login')}>
+                    <div className={cx('overlay')}>
+                        <div className={cx('form')}>
+                            <div className={cx('form-header')}>
+                                <span
+                                    className={formLogin === 1 ? cx('acctive-tabs') : cx('span')}
+                                    onClick={() => setFormLogin(1)}
+                                >
+                                    Đăng nhập
+                                </span>
+                                <span
+                                    className={formLogin === 2 ? cx('acctive-tabs') : cx('span')}
+                                    onClick={() => setFormLogin(2)}
+                                >
+                                    Đăng ký
+                                </span>
+                                <span className={cx('close')} onClick={hanldeLoginExit}>
+                                    <FontAwesomeIcon icon={faXmark} />
+                                </span>
+                            </div>
+                            <div className={cx('form-body')}>
+                                <div className={cx('body')}>
+                                    <div className={formLogin === 1 ? cx('acctive-tabs', 'login') : cx('hide')}>
+                                        <p>
+                                            Đăng nhập để theo dõi đơn hàng, lưu danh sách sản phẩm yêu thích và nhận
+                                            nhiều ưu đãi hấp dẫn
+                                        </p>
+                                        <input type="text" placeholder="Email hoặc tên đăng nhập"></input>
+                                        <input type="password" placeholder="Mật khẩu"></input>
+                                        <span className={cx('password-hide')}>Bạn quên mật khẩu?</span>
+                                        <Button primary onClick={hanldeBtnLogin}>Đăng nhập</Button>
+                                        <p className={cx('label')}>Hoặc đăng nhập bằng</p>
+                                        <div className={cx('login-with')}>
+                                            <Image src="https://cdn.divineshop.vn/static/0b314f30be0025da88c475e87a222e5a.svg" />
+                                            <Image src="https://cdn.divineshop.vn/static/4ba68c7a47305b454732e1a9e9beb8a1.svg" />
+                                        </div>
+                                    </div>
+                                    <div className={formLogin === 2 ? cx('acctive-tabs', 'register') : cx('hide')}>
+                                        <p>
+                                            Đăng ký để theo dõi đơn hàng, lưu danh sách sản phẩm yêu thích và nhận nhiều
+                                            ưu đãi hấp dẫn
+                                        </p>
+                                        <input type="text" placeholder="Họ và tên"></input>
+                                        <input type="password" placeholder="Email"></input>
+                                        <input type="text" placeholder="Tên đăng nhập"></input>
+                                        <input type="text" placeholder="Mật khẩu"></input>
+                                        <input type="text" placeholder="Nhập lại mật khẩu"></input>
+                                        <input type="text" placeholder="Số điện thoại"></input>
+                                        <input type="text" placeholder="Mã giới thiệu (nếu có)"></input>
+                                        <Button primary>Tạo tài khoản</Button>
+                                        <p className={cx('label')}>
+                                            Khi bấm Tạo tài khoản, bạn đã đồng ý với{' '}
+                                            <a href="/">Điều khoản dịch vụ của Divine Shop</a>
+                                        </p>
+                                    </div>
+                                </div>
+                                {formLogin === 1 && (
+                                    <Image
+                                        className={cx('img-form')}
+                                        src="https://cdn.divineshop.vn/static/368e705d45bfc8742aa9d20dbcf4c78c.svg"
+                                    />
+                                )}
+                                {formLogin === 2 && (
+                                    <Image
+                                        className={cx('img-form')}
+                                        src="https://cdn.divineshop.vn/static/235dccb09069e3d4eebc6227236f9dc2.svg"
+                                    />
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
